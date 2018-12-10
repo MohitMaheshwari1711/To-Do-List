@@ -1,45 +1,43 @@
 <div class="container">
-  <div class="row">
-      <div class="col-xs-12">
-          <h1> To-Do Application </h1>
-      </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h1> To-Do Application </h1>
+        </div>
+    </div>
   </div>
-</div>
-
-<div class="container">
-  <div class="row">
-      <div class="col-xs-8">
-          <input type="text" class="form-control" name="task" placeholder="Task" #taskInput>
-      </div>
-
-      <div class="col-xs-4">
-          <button class="btn btn-info" (click)="add(taskInput.value)">Add</button>
-      </div>
+  
+  <div class="container">
+    <div class="row">
+        <div class="col-xs-8">
+            <input type="text" class="form-control" name="task" placeholder="Task" #taskInput>
+        </div>
+  
+        <div class="col-xs-4">
+            <button class="btn btn-info" (click)="add(taskInput.value)">Add</button>
+        </div>
+    </div>
+  
+    <div class="row">
+        <div class="col-xs-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>To-Do list</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let task of tasks">
+                        <td>
+                            <a>{{task.tid}}.{{task.tname}}</a>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger btn-xs" (click)="delete(task)"> Delete </button>
+                        </td>
+                    </tr>
+  
+                </tbody>
+            </table>
+        </div>
+    </div>
   </div>
 
-  <div class="row">
-      <div class="col-xs-12">
-          <table class="table table-striped">
-              <thead>
-                  <tr>
-                      <th>To-Do list</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr *ngFor="let task of tasks">
-                      <td>
-                        {{task.tid}}.{{task.tname}}
-                      </td>
-                      <td>
-                        <button class="btn btn-danger btn-xs" (click)="edit(task)"> Edit </button>
-                    </td>
-                      <td>
-                          <button class="btn btn-danger btn-xs" (click)="delete(task)"> Delete </button>
-                      </td>
-                  </tr>
-
-              </tbody>
-          </table>
-      </div>
-  </div>
-</div>

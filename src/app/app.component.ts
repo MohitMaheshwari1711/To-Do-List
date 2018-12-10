@@ -16,27 +16,34 @@ export class AppComponent implements OnInit {
   constructor(private taskedService: TaskedService) {}
 
   ngOnInit() {
-    this.getHeroes();
+    this.getTasks();
   }
 
-  getHeroes(): void {
-    this.taskedService.getHeroes()
+  getTasks(): void {
+    this.taskedService.getTasks()
     .subscribe(tasks => this.tasks = tasks);
   }
 
   add(tname: string): void {
     tname = tname.trim();
     if (!tname) { return; }
-    this.taskedService.addHero({ tname } as Task)
+    this.taskedService.addTask({ tname } as Task)
       .subscribe(task => {
         this.tasks.push(task);
-        this.getHeroes();
+        this.getTasks();
       });
   }
   
   delete(task: Task): void {
     this.tasks = this.tasks.filter(h => h !== task);
-    this.taskedService.deleteHero(task).subscribe();
+    this.taskedService.deleteTask(task).subscribe();
   }
-  
 }
+
+
+// let title = this.tasks[idx].title;
+//    let result = prompt("Edit Task Title", title);
+//    if (result !== null && result !== ""){
+//      this.tasks[idx].title = result;
+//    }
+//  }

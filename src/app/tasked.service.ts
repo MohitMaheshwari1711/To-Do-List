@@ -14,24 +14,30 @@ const httpOptions = {
 })
 export class TaskedService {
   private taskUrl = 'http://192.168.2.121:3128/task';
+  private getUrl = 'http://192.168.2.121:3128/tasks'
   constructor(private http: HttpClient) { }
 
-  getHeroes (): Observable<Task[]> {
+  getTasks (): Observable<Task[]> {
     return this.http.get<Task[]>('http://192.168.2.121:3128/tasks');
   }
 
-  addHero (task: Task): Observable<Task> {
+  getTask(id: number): Observable<Task> {
+    const url = `${this.taskUrl}/${id}`;
+    return this.http.get<Task>(url);
+  }
+
+  addTask (task: Task): Observable<Task> {
     return this.http.post<Task>('http://192.168.2.121:3128/task', task, httpOptions);
   }
 
-  deleteHero (task: Task | number): Observable<Task> {
+  deleteTask (task: Task | number): Observable<Task> {
     const id = typeof task === 'number' ? task : task.tid;
     const url = `${this.taskUrl}/${id}`;
     console.log(id);
     return this.http.delete<Task>(url, httpOptions);
   }
 
-  updateHero (task: Task): Observable<any> {
-    return this.http.put(this.taskUrl, task, httpOptions);
+  updateTask (task: Task): Observable<Task> {
+    return this.http.put<Task>(`http://192.168.2.121:3128/task/${task.tid}`, task);
   }
 }
