@@ -28,7 +28,10 @@
                 <tbody>
                     <tr *ngFor="let task of tasks">
                         <td>
-                            <a>{{task.tid}}.{{task.tname}}</a>
+                            <a (click)="edit(task)">
+                                <span *ngIf="task!==editTask">{{task.tname}}</span>
+                                <input *ngIf="task===editTask" [(ngModel)]="task.tname" (blur)="update()" (keyup.enter)="update()">
+                            </a>
                         </td>
                         <td>
                             <button class="btn btn-danger btn-xs" (click)="delete(task)"> Delete </button>

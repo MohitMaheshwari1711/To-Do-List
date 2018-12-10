@@ -11,7 +11,7 @@ import { Task } from './task';
 export class AppComponent implements OnInit {
   title = 'final';
   tasks: Task[];
-  editTask = Task;
+  editTask :Task;
 
   constructor(private taskedService: TaskedService) {}
 
@@ -37,6 +37,22 @@ export class AppComponent implements OnInit {
   delete(task: Task): void {
     this.tasks = this.tasks.filter(h => h !== task);
     this.taskedService.deleteTask(task).subscribe();
+  }
+
+  edit(task) {
+    this.editTask = task;
+  }
+
+  update() {
+    if (this.editTask) {
+      this.taskedService.updateTask(this.editTask).subscribe(task => {
+        const ix = task ? this.tasks.findIndex(h => h.tid === task.tid) : -1;
+        if (ix > -1) {
+          this.tasks[ix] = task;
+        }
+      });
+      this.editTask = undefined;
+    }
   }
 }
 
