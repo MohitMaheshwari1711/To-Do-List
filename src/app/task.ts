@@ -1,4 +1,4 @@
 export interface Task {
-    tid: number;
-    tname: string;
+    id: number;
+    title: string;
   }

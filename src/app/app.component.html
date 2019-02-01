@@ -29,8 +29,8 @@
                     <tr *ngFor="let task of tasks">
                         <td>
                             <a (click)="edit(task)">
-                                <span *ngIf="task!==editTask">{{task.tname}}</span>
-                                <input *ngIf="task===editTask" [(ngModel)]="task.tname" (blur)="update()" (keyup.enter)="update()">
+                                <span *ngIf="task!==editTask">{{task.title}}</span>
+                                <input *ngIf="task===editTask" [(ngModel)]="task.title" (blur)="update()" (keyup.enter)="update()">
                             </a>
                         </td>
                         <td>
